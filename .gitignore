@@ -1,0 +1,17 @@
+# .NET
+FinanceTracker.API/bin/
+FinanceTracker.API/obj/
+*.user
+*.suo
+*.userprefs
+*.sln.docstates
+.vs/
+
+# Angular (the existing one in finance-tracker-ui handles most of this)
+**/node_modules/
+**/dist/
+**/.angular/
+
+# General
+.DS_Store
+*.log

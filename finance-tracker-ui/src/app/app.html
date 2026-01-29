@@ -1,0 +1,79 @@
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+<!-- * * * * * * * * * * * The content below * * * * * * * * * * * -->
+<!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * -->
+<!-- * * * * * * * * * * and can be replaced.  * * * * * * * * * * -->
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+<!-- * * * * * * * * * Delete the template below * * * * * * * * * -->
+<!-- * * * * * * * to get started with your project! * * * * * * * -->
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+
+<div style="padding: 20px; max-width: 800px; margin: 0 auto;">
+  <h1>Finance Tracker</h1>
+
+  <!-- Add Transaction Form -->
+  <div style="border: 1px solid #ccc; padding: 20px; margin-bottom: 20px; border-radius: 5px;">
+    <h2>Add New Transaction</h2>
+    <form (ngSubmit)="addTransaction()">
+      <div style="margin-bottom: 10px;">
+        <label>Description:</label><br>
+        <input type="text" [(ngModel)]="newTransaction.description" name="description" 
+               style="width: 100%; padding: 5px;" required>
+      </div>
+
+      <div style="margin-bottom: 10px;">
+        <label>Amount:</label><br>
+        <input type="number" [(ngModel)]="newTransaction.amount" name="amount" 
+               style="width: 100%; padding: 5px;" step="0.01" required>
+      </div>
+
+      <div style="margin-bottom: 10px;">
+        <label>Date:</label><br>
+        <input type="date" [(ngModel)]="newTransaction.date" name="date" 
+               style="width: 100%; padding: 5px;" required>
+      </div>
+
+      <div style="margin-bottom: 10px;">
+        <label>Type:</label><br>
+        <select [(ngModel)]="newTransaction.type" name="type" style="width: 100%; padding: 5px;">
+          <option value="Income">Income</option>
+          <option value="Expense">Expense</option>
+        </select>
+      </div>
+
+      <button type="submit" style="padding: 10px 20px; background-color: #4CAF50; color: white; border: none; cursor: pointer;">
+        Add Transaction
+      </button>
+    </form>
+  </div>
+
+  <!-- Transactions List -->
+  <div>
+    <h2>Transactions</h2>
+    <div *ngIf="transactions.length === 0" style="padding: 20px; text-align: center; color: #999;">
+      No transactions yet. Add one above!
+    </div>
+
+    <div *ngFor="let transaction of transactions" 
+         style="border: 1px solid #ccc; padding: 15px; margin-bottom: 10px; border-radius: 5px; display: flex; justify-content: space-between; align-items: center;">
+      <div>
+        <strong>{{ transaction.description }}</strong><br>
+        <span style="color: #666;">{{ transaction.date | date:'shortDate' }}</span> - 
+        <span [style.color]="transaction.type === 'Income' ? 'green' : 'red'">
+          {{ transaction.type === 'Income' ? '+' : '-' }}${{ transaction.amount }}
+        </span>
+      </div>
+      <button (click)="deleteTransaction(transaction.id)" 
+              style="padding: 5px 15px; background-color: #f44336; color: white; border: none; cursor: pointer; border-radius: 3px;">
+        Delete
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+<!-- * * * * * * * * * * * The content above * * * * * * * * * * * * -->
+<!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * * -->
+<!-- * * * * * * * * * * and can be replaced.  * * * * * * * * * * * -->
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+<!-- * * * * * * * * * * End of Placeholder  * * * * * * * * * * * * -->
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
